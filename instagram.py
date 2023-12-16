@@ -17,6 +17,6 @@ post = instaloader.Post.from_shortcode(L.context, 'C01p7CToOQv')     # Post shor
 
 print(post.owner_username)
 
-with open('output.txt', 'w', encoding='utf-8') as f:
+with open('output.csv', 'w', encoding='utf-8') as f:
     for comment in post.get_comments():
         f.write(comment.text + '\n')
