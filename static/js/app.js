@@ -5,8 +5,10 @@ document.getElementById('scrapeForm').addEventListener('submit', function(event)
     var data = {
         username: formData.get('username'),
         password: formData.get('password'),
-        postlink: formData.get('shortcode')
+        shortcode: formData.get('shortcode')
     };
+
+    console.log(data);
 
     fetch('/scrape', {
         method: 'POST',
@@ -25,7 +27,5 @@ document.getElementById('scrapeForm').addEventListener('submit', function(event)
             window.location.href = '/download';
         });
 
-        // Add the button to the DOM
-        document.getElementById('buttonContainer').appendChild(downloadButton);
     });
 });
