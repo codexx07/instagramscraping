@@ -13,11 +13,14 @@ def index():
 @app.route('/scrape', methods=['POST'])
 def scrape():
     data = request.get_json()
-    username = data['username']
-    password = data['password']
-    postlink = data['postlink']
-    
-    subprocess.check_call([sys.executable, 'instagram.py', username, password, postlink])
+    username = request.form.get('username')
+    password = request.form.get('password')
+    shortcode = request.form.get('shortcode')
+
+    if username is None or password is None or shortcode is None:
+        return jsonify({'status': 'error', 'message': 'Missing username, password, or shortcode'}), 400
+
+    subprocess.check_call([sys.executable, 'instagram.py', username, password, shortcode])
 
     return jsonify({'status': 'success'})
 

@@ -5,7 +5,7 @@ document.getElementById('scrapeForm').addEventListener('submit', function(event)
     var data = {
         username: formData.get('username'),
         password: formData.get('password'),
-        postlink: formData.get('postlink')
+        postlink: formData.get('shortcode')
     };
 
     fetch('/scrape', {
