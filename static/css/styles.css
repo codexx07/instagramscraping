@@ -21,13 +21,47 @@ body {
     height: 100vh;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 100px;
+    padding-left: 100px;
+    padding: 0;
+}
+
+.hero1 {
+    font-size: 5em; /* Increase font size */
+    height: 100%;
+    display: flex;
+    align-items: center; /* Vertically center contents */
+    justify-content: center; /* Horizontally center contents */
+    white-space: pre-wrap;
+    color: #131211; /* Bright color, adjust as needed */
+    font-family: 'Cookie', cursive;
+    position: relative; /* Add this line */
+    top: -90px; /* Push contents up, adjust as needed */
+}
+
+.hero1 span{
+    color: #d8d81f; /* Bright color, adjust as needed */
+    font-family: 'Cookie', cursive;
+    animation: fadeIn 3s ease-in-out infinite;
+}
+
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
 .card {
     width: 300px;
     padding: 20px;
     border-radius: 10px;
     background: #f0d8d8;
-    box-shadow:  20px 20px 60px #c7a9a9,
-                -20px -20px 60px #ffffff;
+    box-shadow:  20px 20px 60px #8b7575,
+                -20px -20px 60px #292727;
 }
 
 .card:hover {

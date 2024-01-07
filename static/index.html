@@ -9,20 +9,24 @@
 </head>
 <body>
     <div class="content">
-        <div class="card">
-            <div class="container">
-                <h1 class="header">Login</h1>
-                <form id="scrapeForm" method="POST" action="/scrape">
-                    <label for="username">Username:</label><br>
-                    <input type="text" id="username" name="username"><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password"><br>
-                    <label for="postlink">Instagram ShortCode:</label><br>
-                    <input type="text" id="postlink" name="postlink"><br>
-                    <input type="submit" value="Submit">
-                </form>
+        <div class ="wrapper">
+            <div class="card">
+                <div class="container">
+                    <h1 class="header">Login</h1>
+                    <form id="scrapeForm" method="POST" action="/scrape">
+                        <label for="username">Username:</label><br>
+                        <input type="text" id="username" name="username"><br>
+                        <label for="password">Password:</label><br>
+                        <input type="password" id="password" name="password"><br>
+                        <label for="postlink">Instagram ShortCode:</label><br>
+                        <input type="text" id="postlink" name="postlink"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
             </div>
+                <h1 class="hero1"><span class="highlight">Online</span><br> Instagram Comment<br>Extractor</h1>
         </div>
+    </div>
         <button class="download" id="downloadButton">Download Comments</button>
     </div>
     <script src="/static/js/app.js"></script>
