@@ -1,3 +1,5 @@
+
+
 body {
     display: flex;
     justify-content: center;
@@ -6,9 +8,17 @@ body {
     margin: 0;
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
-    background-image: url('download.jpeg');
+    background-image: url('/static/images/download.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .card {
@@ -68,4 +78,24 @@ input[type=submit] {
 input[type=submit]:hover {
     box-shadow:  2px 2px 2px #c7a9a9,
                 -2px -2px 2px #ffffff;
+}
+
+.download{
+    background-color: #32CD32; /* More greenish color */
+    color: white;
+    padding: 10px 15px; /* Smaller padding */
+    margin: 20px 0; /* Increased margin */
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif; 
+    border: none;
+    cursor: pointer;
+    width: 80%; /* Smaller width */
+    border-radius: 10px;
+    box-shadow:  5px 5px 15px #c7a9a9,
+                -5px -5px 15px #ffffff;
+}
+
+.download:hover {
+    box-shadow:  2px 2px 2px #c7a9a9,
+    -2px -2px 2px #ffffff;
 }

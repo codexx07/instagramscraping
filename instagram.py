@@ -1,30 +1,7 @@
-# import instaloader
-# import sys
-# import io
-
-# sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8', line_buffering=True)
-
-
-
-# L = instaloader.Instaloader()
-# USER = "scraping78"           # User name
-# PASSWORD = "sarabjotsceaping"   # Password
-# SHORTCODE = "C01p7CToOQv"
-
-
-# L.login(USER, PASSWORD)        
-
-# post = instaloader.Post.from_shortcode(L.context, SHORTCODE)     # Post shortcode Shortcode is the part after the p/ in the URL https://www.instagram.com/p/C01p7CToOQv/?utm_source=ig_web_copy_link&igshid=ODhhZWM5NmIwOQ== 
-
-# print(post.owner_username)
-
-# with open('output.csv', 'w', encoding='utf-8') as f:
-#     for comment in post.get_comments():
-#         f.write(comment.text + '\n')
-
-
-from flask import Flask, request
+from flask import Flask, request, send_file
 import instaloader
+import csv
+import os
 
 app = Flask(__name__)
 
@@ -43,7 +20,21 @@ def scrape():
     for comment in post.get_comments():
         comments.append(comment.text)
 
-    return {'comments': comments}
+    # Save comments to a CSV file
+    with open('comments.csv', 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(['Comments'])
+        for comment in comments:
+            writer.writerow([comment])
+
+    return {'message': 'Comments scraped successfully'}
+
+@app.route('/download', methods=['GET'])
+def download():
+    if os.path.exists('comments.csv'):
+        return send_file('comments.csv', as_attachment=True)
+    else:
+        return {'message': 'No file to download'}
 
 if __name__ == '__main__':
     app.run(debug=True)
