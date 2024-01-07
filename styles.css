@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('download.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f0d8d8;
+    box-shadow:  20px 20px 60px #c7a9a9,
+                -20px -20px 60px #ffffff;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.header{
+    text-align: center;
+    font-size: 50px; /* Increase the font size */
+    font-weight: bold;
+    color: #c7a9a9;
+    font-family: 'Cookie', cursive;
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: #f0d8d8;
+    box-shadow: inset 8px 8px 8px #c7a9a9,
+                inset -8px -8px 8px #ffffff;
+}
+
+input[type=submit] {
+    background-color: #f0d8d8;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif; 
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow:  5px 5px 15px #c7a9a9,
+                -5px -5px 15px #ffffff;
+}
+
+input[type=submit]:hover {
+    box-shadow:  2px 2px 2px #c7a9a9,
+                -2px -2px 2px #ffffff;
+}
