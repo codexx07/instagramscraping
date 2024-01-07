@@ -82,6 +82,7 @@ input[type=submit]:hover {
 
 .download{
     background-color: #32CD32; /* More greenish color */
+    display: none;
     color: white;
     padding: 10px 15px; /* Smaller padding */
     margin: 20px 0; /* Increased margin */

@@ -2,10 +2,18 @@ document.getElementById('scrapeForm').addEventListener('submit', function(event)
     event.preventDefault();
 
     var formData = new FormData(event.target);
+    var data = {
+        username: formData.get('username'),
+        password: formData.get('password'),
+        postlink: formData.get('postlink')
+    };
 
     fetch('/scrape', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => {
