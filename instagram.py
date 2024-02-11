@@ -1,22 +1,53 @@
+from flask import Flask, request, send_from_directory,send_file
 import instaloader
-import sys
-import io
+import csv
+import os
+import logging
+from flask_cors import CORS
 
-sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8', line_buffering=True)
+app = Flask(__name__, static_folder='static')
+CORS(app)
 
+@app.route('/')
+def index():
+    return send_from_directory(app.static_folder, 'index.html')
 
+@app.route('/scrape', methods=['POST'])
+def scrape():
+    try:
+        username = request.json.get('username')
+        password = request.json.get('password')
+        shortcode = request.json.get('shortcode')
 
-L = instaloader.Instaloader()
-USER = "scraping78"           # User name
-PASSWORD = "sarabjotsceaping"   # Password
+        L = instaloader.Instaloader()
+        L.login(username, password)
 
+        post = instaloader.Post.from_shortcode(L.context, shortcode)
 
-L.login(USER, PASSWORD)        
+        comments = []
+        for comment in post.get_comments():
+            comments.append(comment.text)
 
-post = instaloader.Post.from_shortcode(L.context, 'C01p7CToOQv')     # Post shortcode Shortcode is the part after the p/ in the URL https://www.instagram.com/p/C01p7CToOQv/?utm_source=ig_web_copy_link&igshid=ODhhZWM5NmIwOQ== 
+        # Save comments to a CSV file
+        with open('./output/comments.csv', 'w', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerow(['Comments'])
+            for comment in comments:
+                writer.writerow([comment])
 
-print(post.owner_username)
+        return {'status':'success','message': 'Comments scraped successfully'}
 
-with open('output.csv', 'w', encoding='utf-8') as f:
-    for comment in post.get_comments():
-        f.write(comment.text + '\n')
+    except Exception as e:
+        app.logger.error("error" + str(e)) 
+        return {'status': 'error', 'message': str(e)}, 500   
+
+@app.route('/download', methods=['GET'])
+def download():
+    if os.path.exists('./output/comments.csv'):
+        return send_file('./output/comments.csv', as_attachment=True)
+    else:
+        return {'message': 'No file to download'}
+
+if __name__ == '__main__':
+    app.logger.setLevel(logging.ERROR)
+    app.run(debug=True, port=5001)

@@ -1,0 +1,201 @@
+header {
+    background-color: transparent;
+    padding: 10px 20px;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 140px);
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    margin: 10px 50px 4px 1px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links li {
+    margin-left: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #ffc0cb;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .nav-links li:last-child a {
+    background-color: #ffc0cb;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    background-image: url('/static/images/download.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 100px;
+    padding-left: 100px;
+    padding: 0;
+}
+
+.hero1 {
+    font-size: 5em; /* Increase font size */
+    height: 100%;
+    display: flex;
+    align-items: center; /* Vertically center contents */
+    justify-content: center; /* Horizontally center contents */
+    white-space: pre-wrap;
+    color: #131211; /* Bright color, adjust as needed */
+    font-family: 'Cookie', cursive;
+    position: relative; /* Add this line */
+    top: -90px; /* Push contents up, adjust as needed */
+}
+
+.hero1 span{
+    color: #d8d81f; /* Bright color, adjust as needed */
+    font-family: 'Cookie', cursive;
+    animation: fadeIn 3s ease-in-out infinite;
+}
+
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+.card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f0d8d8;
+    box-shadow:  20px 20px 60px #8b7575,
+                -20px -20px 60px #292727;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.header{
+    text-align: center;
+    font-size: 50px; /* Increase the font size */
+    font-weight: bold;
+    color: #c7a9a9;
+    font-family: 'Cookie', cursive;
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: #f0d8d8;
+    box-shadow: inset 8px 8px 8px #c7a9a9,
+                inset -8px -8px 8px #ffffff;
+}
+
+input[type=submit] {
+    background-color: #f0d8d8;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif; 
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow:  5px 5px 15px #c7a9a9,
+                -5px -5px 15px #ffffff;
+}
+
+input[type=submit]:hover {
+    box-shadow:  2px 2px 2px #c7a9a9,
+                -2px -2px 2px #ffffff;
+}
+
+.download {
+    background-color: #32CD32;
+    color: white;
+    padding: 10px 15px;
+    margin: 20px 0;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif; 
+    border: none;
+    cursor: pointer;
+    width: 20%; /* Reduced width */
+    border-radius: 10px;
+    box-shadow:  5px 5px 15px #c7a9a9,
+                -5px -5px 15px #ffffff;
+    margin-top: -100px;
+    margin-right: -300px;
+    display:none;
+}
+
+.download:hover {
+    box-shadow:  2px 2px 2px #c7a9a9,
+    -2px -2px 2px #ffffff;
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .footer-content {
+    font-size: 10px;
+  }
+  
+  .footer-content p {
+    margin: 0;
+  }
+  
