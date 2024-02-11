@@ -1,31 +1,52 @@
 document.getElementById('scrapeForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the form from submitting normally
 
     var formData = new FormData(event.target);
-    var data = {
-        username: formData.get('username'),
-        password: formData.get('password'),
-        shortcode: formData.get('shortcode')
-    };
-
-    console.log(data);
+    var object = {};
+    formData.forEach(function(value, key){
+        object[key] = value;
+    });
+    var json = JSON.stringify(object);
 
     fetch('/scrape', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: json
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.status === 200) {
+            // If the status is 200, click the button
+            document.getElementById('downloadButton').click();
+        }
+        return response.json();
+    })
     .then(data => {
-        console.log(data);
+        if (data.status === 'success') {
+            document.getElementById('downloadButton').style.display = 'block';
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
 
-        var downloadButton = document.getElementById('downloadButton');
-        downloadButton.style.display = 'block'; // or 'inline', 'inline-block', etc.
-        downloadButton.addEventListener('click', function() {
-            window.location.href = '/download';
-        });
+document.getElementById('downloadButton').addEventListener('click', function() {
+    fetch('/download')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'comments.csv'); // or any other filename you want
+        document.body.appendChild(link);
+        link.click();
 
-    });
+        document.body.removeChild(link);
+    })
+    .catch(error => console.error('Error:', error));
 });

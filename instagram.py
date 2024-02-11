@@ -1,10 +1,16 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_from_directory,send_file
 import instaloader
 import csv
 import os
 import logging
+from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
+CORS(app)
+
+@app.route('/')
+def index():
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/scrape', methods=['POST'])
 def scrape():
@@ -23,22 +29,22 @@ def scrape():
             comments.append(comment.text)
 
         # Save comments to a CSV file
-        with open('comments.csv', 'w', newline='', encoding='utf-8') as f:
+        with open('./output/comments.csv', 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(['Comments'])
             for comment in comments:
                 writer.writerow([comment])
 
-        return {'message': 'Comments scraped successfully'}
+        return {'status':'success','message': 'Comments scraped successfully'}
 
     except Exception as e:
-        app.logger.error(e)  
-        return str(e), 500   
+        app.logger.error("error" + str(e)) 
+        return {'status': 'error', 'message': str(e)}, 500   
 
 @app.route('/download', methods=['GET'])
 def download():
-    if os.path.exists('comments.csv'):
-        return send_file('comments.csv', as_attachment=True)
+    if os.path.exists('./output/comments.csv'):
+        return send_file('./output/comments.csv', as_attachment=True)
     else:
         return {'message': 'No file to download'}
 
